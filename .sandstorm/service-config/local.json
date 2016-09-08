@@ -1,0 +1,6 @@
+{
+	"storage.local-disk.path": "/var/assets/uploads/",
+	"repository.default-local-path": "/var/assets/repos/",
+	"pygments.enabled": true,
+	"phabricator.developer-mode": false
+}
