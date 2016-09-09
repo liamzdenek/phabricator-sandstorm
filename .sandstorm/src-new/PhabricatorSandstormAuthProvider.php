@@ -192,11 +192,16 @@ SCRIPT;
     $account = null;
     $log_user = null;
 
-		$adapter = $this->getAdapter();
+	$adapter = $this->getAdapter();
 
-    $user = id(new PhabricatorUser())->loadOneWhere(
-      'username = %s',
-      $adapter->getAccountName());
+    $user = null;
+    $user_mapper = id(new UserMapper())->loadOneWhere(
+      'ss_id = %s',
+      $adapter->getAccountId());
+
+    if($user_mapper) {
+        $user = id(new PhabricatorUser())->loadOneWhere('id = %s', $user_mapper->getId());
+    }
 
 		if(!$user) {
 			// user does not exist
@@ -210,16 +215,21 @@ SCRIPT;
 			$user->openTransaction();
 			{
 				$editor = id(new PhabricatorUserEditor())->setActor($user);
-				$editor->createNewUser($user, id(new PhabricatorUserEmail())->setAddress("fake+".$adapter->getAccountName()."@example.com")->setIsVerified(1), true);
+				$editor->createNewUser($user, id(new PhabricatorUserEmail())->setAddress("fake+".$adapter->getAccountID()."@example.com")->setIsVerified(1), true);
 				if($adapter->hasPermission("admin")) {
 					$editor->makeAdminUser($user, true);
 				}
 				$account->setUserPHID($user->getPHID());
 				$provider->willRegisterAccount($account);
 				$account->save();
+
+                id(new UserMapper())
+                    ->setss_id($adapter->getAccountId())
+                    ->setphabricator_user_id($user->getId())
+                    ->save();
 			}
 			$user->saveTransaction();
-			//throw new Exception("TODO, create user " . $this->getAdapter()->getAccountName());
+			//throw new Exception("TODO, create user " . $this->getAdapter()->getAccountID());
 		} else {
 			// user already exists, update perms
 			$user->setUsername($adapter->getAccountName());

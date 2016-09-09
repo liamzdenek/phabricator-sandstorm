@@ -35,7 +35,7 @@ final class PhutilSandstormAuthAdapter extends PhutilAuthAdapter {
   }
 
   public function getAccountName() {
-    return $this->ssUserId;
+    return $this->ssHandle;
   }
 
   public function getAccountURI() {

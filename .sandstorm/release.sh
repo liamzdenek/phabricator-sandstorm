@@ -15,3 +15,4 @@ cd /opt/app/phabricator/src/extensions
 cp /opt/app/.sandstorm/src-new/PhabricatorSandstormAuthProvider.php . # /opt/app/phabricator/src/applications/auth/provider/ # new file
 cp /opt/app/.sandstorm/src-new/PhabricatorBarePageView.php . # /opt/app/phabricator/src/view/page/PhabricatorBarePageView.php # replaced file
 cp /opt/app/.sandstorm/src-new/AphrontArbitraryScript.php . # /opt/app/phabricator/src/view/AphrontArbitraryScript.php # new file
+cp /opt/app/.sandstorm/src-new/UserMapper.php . # /opt/app/phabricator/src/view/AphrontArbitraryScript.php # new file
