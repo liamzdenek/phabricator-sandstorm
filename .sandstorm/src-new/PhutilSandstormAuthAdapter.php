@@ -77,14 +77,15 @@ final class PhutilSandstormAuthAdapter extends PhutilAuthAdapter {
   }
 
   public function setUserDataFromRequest($headers) {
-    //throw new Exception(print_r($headers, true));
 
-    $this->ssUsername = $headers["X-Sandstorm-Username"];
+    $this->ssUsername = urldecode($headers["X-Sandstorm-Username"]);
     $this->ssUserId = $headers["X-Sandstorm-User-Id"];
     $this->ssTabId = $headers["X-Sandstorm-Tab-Id"];
     $this->ssPermissions = explode(",",$headers["X-Sandstorm-Permissions"]);
     $this->ssHandle = $headers["X-Sandstorm-Preferred-Handle"];
     $this->ssPicture = $headers["X-Sandstorm-User-Picture"];
+    //throw new Exception(print_r($this, true));
+
     //$this->ssPronouns = $headers["X-Sandstorm-User-Pronouns"];
 
     if (!strlen($this->ssUserId)) {
