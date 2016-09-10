@@ -2,5 +2,6 @@
 	"storage.local-disk.path": "/var/assets/uploads/",
 	"repository.default-local-path": "/var/assets/repos/",
 	"pygments.enabled": true,
+    "diffusion.allow-http-auth": true,
 	"phabricator.developer-mode": false
 }
