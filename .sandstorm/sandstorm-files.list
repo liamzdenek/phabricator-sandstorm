@@ -11,6 +11,7 @@ bin/dash
 bin/df
 bin/grep
 bin/hostname
+bin/less
 bin/ls
 bin/mkdir
 bin/nano
@@ -22,6 +23,7 @@ bin/sleep
 bin/touch
 bin/which
 etc
+etc/alternatives/pager
 etc/alternatives/phar
 etc/alternatives/php
 etc/alternatives/php-config
@@ -167,13 +169,20 @@ opt/app/.sandstorm
 opt/app/.sandstorm/build.sh
 opt/app/.sandstorm/launcher.sh
 opt/app/.sandstorm/migrations
+opt/app/.sandstorm/migrations/20160908.ss-init-patch.sql
+opt/app/.sandstorm/migrations/20160908.ss-user-mapper.sql
+opt/app/.sandstorm/pgp-signature
 opt/app/.sandstorm/release.sh
+opt/app/.sandstorm/service-config/local.json
 opt/app/.sandstorm/service-config/mime.types
 opt/app/.sandstorm/service-config/nginx.conf
 opt/app/.sandstorm/src-new/AphrontArbitraryScript.php
+opt/app/.sandstorm/src-new/DiffusionServeController.php
 opt/app/.sandstorm/src-new/PhabricatorBarePageView.php
 opt/app/.sandstorm/src-new/PhabricatorSandstormAuthProvider.php
 opt/app/.sandstorm/src-new/PhutilSandstormAuthAdapter.php
+opt/app/.sandstorm/src-new/UserMapper.php
+opt/sandstorm
 proc/cpuinfo
 sandstorm-http-bridge
 sandstorm-http-bridge-config
@@ -190,6 +199,7 @@ usr/bin/my_print_defaults
 usr/bin/mysql
 usr/bin/mysql_install_db
 usr/bin/nano
+usr/bin/pager
 usr/bin/phar
 usr/bin/php
 usr/bin/php-config
@@ -213,6 +223,7 @@ usr/lib/git-core/git-http-backend
 usr/lib/git-core/git-upload-pack
 usr/lib/libqdbm.so.14
 usr/lib/libqdbm.so.14.14.0
+usr/lib/locale/locale-archive
 usr/lib/php5/20131226/apcu.so
 usr/lib/php5/20131226/curl.so
 usr/lib/php5/20131226/gd.so
