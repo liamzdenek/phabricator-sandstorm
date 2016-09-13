@@ -7,7 +7,7 @@ set -euo pipefail
 
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
-apt-get install -y nginx php5-fpm php5-mysql php5-cli php5-curl git php5-dev php5-gd php5-apcu mysql-server
+apt-get install -y nginx php5-fpm php5-mysql php5-cli php5-curl git php5-dev php5-gd php5-apcu mysql-server python-pygments
 service nginx stop
 service php5-fpm stop
 service mysql stop
@@ -35,11 +35,6 @@ sed --in-place='' \
         --expression='s/^user\t\t= mysql/#user\t\t= mysql/' \
         /etc/mysql/my.cnf
 # patch mysql conf to use smaller transaction logs to save disk space
-cat <<EOF > /usr/local/bin/pygmentize
-#!/bin/bash
-
-HOME=/var/home /usr/bin/pygmentize $@
-EOF
 cat <<EOF > /etc/mysql/conf.d/sandstorm.cnf
 [mysqld]
 # Set the transaction log file to the minimum allowed size to save disk space.
@@ -56,4 +51,13 @@ ft_boolean_syntax=' |-><()~*:""&^'
 innodb_buffer_pool_size=1600M
 EOF
 
+# Give pygmentize a homedir so Python doesn't freak out
+cat <<EOF > /usr/local/bin/pygmentize
+#!/bin/bash
+
+HOME=/var/home /usr/bin/pygmentize $@
+EOF
+chmod a+x /usr/local/bin/pygmentize
+
+# Install custom PHP settings for Phabricator
 cp /opt/app/.sandstorm/service-config/php.conf/* /etc/php5/fpm/conf.d/
