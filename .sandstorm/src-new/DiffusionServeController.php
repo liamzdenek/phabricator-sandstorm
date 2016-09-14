@@ -695,7 +695,7 @@ final class DiffusionServeController extends DiffusionController {
         $adapter->getAccountId());
 
     if($user_mapper) {
-        $user = id(new PhabricatorUser())->loadOneWhere('phid = %s', $user_mapper->getPhabricatorUserPhid());
+        $user = id(new PhabricatorUser())->loadOneWhere('phid = %s', $user_mapper->getphabricator_user_phid());
     }
 
     if(!$user) {

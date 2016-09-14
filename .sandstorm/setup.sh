@@ -50,12 +50,17 @@ ft_min_word_len=3
 ft_boolean_syntax=' |-><()~*:""&^'
 innodb_buffer_pool_size=1600M
 EOF
+cat <<EOF > /usr/bin/git-http-backend
+#!/bin/bash
+/usr/lib/git-core/git-http-backend "\$@"
+EOF
+chmod a+x /usr/bin/git-http-backend
 
 # Give pygmentize a homedir so Python doesn't freak out
 cat <<EOF > /usr/local/bin/pygmentize
 #!/bin/bash
 
-HOME=/var/home /usr/bin/pygmentize $@
+HOME=/var/home /usr/bin/pygmentize \$@
 EOF
 chmod a+x /usr/local/bin/pygmentize
 

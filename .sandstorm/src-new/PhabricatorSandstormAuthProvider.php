@@ -26,9 +26,13 @@ final class PhabricatorSandstormAuthProvider extends PhabricatorAuthProvider {
 
   public function getAdapter() {
     if (!$this->adapter) {
-      $adapter = new PhutilSandstormAuthAdapter();
-			$adapter->setUserDataFromRequest(getallheaders());
-      $this->adapter = $adapter;
+        if (php_sapi_name() === 'cli') {
+            $this->adapter = new PhutilEmptyAuthAdapter();
+        } else {    
+            $adapter = new PhutilSandstormAuthAdapter();
+            $adapter->setUserDataFromRequest(getallheaders());
+            $this->adapter = $adapter;
+        }
     }
     return $this->adapter;
   }
@@ -200,7 +204,7 @@ SCRIPT;
       $adapter->getAccountId());
 
     if($user_mapper) {
-        $user = id(new PhabricatorUser())->loadOneWhere('phid = %s', $user_mapper->getPhabricatorUserPhid());
+        $user = id(new PhabricatorUser())->loadOneWhere('phid = %s', $user_mapper->getphabricator_user_phid());
     }
 
 		if(!$user) {
