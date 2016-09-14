@@ -15,7 +15,6 @@ bin/less
 bin/ls
 bin/mkdir
 bin/nano
-bin/pygmentize
 bin/rm
 bin/sed
 bin/sh
@@ -34,6 +33,7 @@ etc/default/nss
 etc/group
 etc/inputrc
 etc/ld.so.cache
+etc/locale.alias
 etc/localtime
 etc/mtab
 etc/mysql/conf.d
@@ -193,7 +193,6 @@ usr/bin/diff
 usr/bin/env
 usr/bin/find
 usr/bin/git
-usr/bin/git-http-backend
 usr/bin/head
 usr/bin/my_print_defaults
 usr/bin/mysql
@@ -730,6 +729,7 @@ usr/share/git-core/templates/hooks/prepare-commit-msg.sample
 usr/share/git-core/templates/hooks/update.sample
 usr/share/git-core/templates/info
 usr/share/git-core/templates/info/exclude
+usr/share/locale/locale.alias
 usr/share/mysql/charsets/Index.xml
 usr/share/mysql/english/errmsg.sys
 usr/share/mysql/fill_help_tables.sql

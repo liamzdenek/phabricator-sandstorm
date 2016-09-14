@@ -544,11 +544,6 @@ final class DiffusionServeController extends DiffusionController {
       // GIT_COMMITTER_EMAIL
     ) + $this->getCommonEnvironment($viewer);
 
-    if(!file_exists($env['GIT_PROJECT_ROOT'])) {
-        // git project root comes from DB and is only configurable by admins, but just to be safe...
-        shell_exec("git init --bare ".escapeshellarg($env['GIT_PROJECT_ROOT']));
-    }
-
     $input = PhabricatorStartup::getRawInput();
 
     $command = csprintf('%s', $bin);
