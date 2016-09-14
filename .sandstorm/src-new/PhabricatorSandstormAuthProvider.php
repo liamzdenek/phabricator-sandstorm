@@ -200,7 +200,7 @@ SCRIPT;
       $adapter->getAccountId());
 
     if($user_mapper) {
-        $user = id(new PhabricatorUser())->loadOneWhere('id = %s', $user_mapper->getId());
+        $user = id(new PhabricatorUser())->loadOneWhere('phid = %s', $user_mapper->getPhabricatorUserPhid());
     }
 
 		if(!$user) {
@@ -225,7 +225,7 @@ SCRIPT;
 
                 id(new UserMapper())
                     ->setss_id($adapter->getAccountId())
-                    ->setphabricator_user_id($user->getId())
+                    ->setphabricator_user_phid($user->getPhid())
                     ->save();
 			}
 			$user->saveTransaction();

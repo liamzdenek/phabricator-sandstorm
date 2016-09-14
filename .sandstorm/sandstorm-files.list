@@ -173,9 +173,12 @@ opt/app/.sandstorm/migrations/20160908.ss-init-patch.sql
 opt/app/.sandstorm/migrations/20160908.ss-user-mapper.sql
 opt/app/.sandstorm/pgp-signature
 opt/app/.sandstorm/release.sh
+opt/app/.sandstorm/service-config
 opt/app/.sandstorm/service-config/local.json
 opt/app/.sandstorm/service-config/mime.types
 opt/app/.sandstorm/service-config/nginx.conf
+opt/app/.sandstorm/service-config/php.conf
+opt/app/.sandstorm/service-config/php.conf/phabricator.conf.ini
 opt/app/.sandstorm/src-new/AphrontArbitraryScript.php
 opt/app/.sandstorm/src-new/DiffusionServeController.php
 opt/app/.sandstorm/src-new/PhabricatorBarePageView.php
