@@ -684,8 +684,8 @@ final class DiffusionRepositoryController extends DiffusionController {
     return id(new DiffusionCloneURIView())
       ->setViewer($viewer)
       ->setRepository($repository)
-      ->setRepositoryURI("I love phab ".$uri)
-      ->setDisplayURI($display);
+      ->setRepositoryURI($uri)
+      ->setDisplayURI("I love phab ".$display);
   }
 
 }

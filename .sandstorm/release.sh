@@ -17,4 +17,4 @@ cp /opt/app/.sandstorm/src-new/PhabricatorBarePageView.php . # /opt/app/phabrica
 cp /opt/app/.sandstorm/src-new/AphrontArbitraryScript.php . # /opt/app/phabricator/src/view/AphrontArbitraryScript.php # new file
 cp /opt/app/.sandstorm/src-new/UserMapper.php . # /opt/app/phabricator/src/view/AphrontArbitraryScript.php # new file
 cp /opt/app/.sandstorm/src-new/DiffusionServeController.php . #  phabricator/src/applications/diffusion/controller/DiffusionServeController.php # replaced file
-
+cp /opt/app/.sandstorm/src-new/DiffusionRepositoryController.php . # phabricator/src/applications/diffusion/controller/DiffusionRepositoryController.php # replaced file
