@@ -59,6 +59,9 @@ class PhabricatorBarePageView extends AphrontPageView {
   }
 
   protected function getHead() {
+    $grainjs = "window.parent.postMessage({'setTitle': document.title}, '*');".
+        "window.parent.postMessage({'setPath': location.pathname + location.hash}, '*');";
+
     $framebust = null;
     if (!$this->getFrameable()) {
       //$framebust = '(top == self) || top.location.replace(self.location.href);';
@@ -149,7 +152,7 @@ class PhabricatorBarePageView extends AphrontPageView {
       $apple_tag,
       $referrer_tag,
       CelerityStaticResourceResponse::renderInlineScript(
-        $framebust.jsprintf('window.__DEV__=%d;', ($developer ? 1 : 0))),
+        $grainjs.$framebust.jsprintf('window.__DEV__=%d;', ($developer ? 1 : 0))),
       $response->renderResourcesOfType('css'));
   }
 
