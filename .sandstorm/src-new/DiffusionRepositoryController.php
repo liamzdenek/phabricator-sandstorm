@@ -681,9 +681,46 @@ final class DiffusionRepositoryController extends DiffusionController {
     $display = (string)$display;
     $viewer = $this->getViewer();
 
-    return phutil_tag(
-        'iframe',
-        array('src' => "http://w3schools.com")
+    $uri = explode("/", $display);
+    array_shift($uri); //"http"
+    array_shift($uri); //""
+    array_shift($uri); //"....sandcats.io:6080
+    $uri = implode("/", $uri);
+    $uri = print_r($uri, true);
+
+    $script = <<<SCRIPT
+document.addEventListener("DOMContentLoaded", function() {
+    var template = "git clone "+window.location.protocol+"//arbitrary:\$API_TOKEN@\$API_HOST/$uri";
+    window.parent.postMessage({renderTemplate: {
+        rpcId: "0",
+        template: template,
+        clipboardButton: 'left'
+    }}, "*");
+});
+
+window.addEventListener("message", function(event) {
+    if (event.data.rpcId === "0") {
+        if (event.data.error) {
+            console.log("ERROR: " + event.data.error);
+        } else {
+            var el = document.getElementById("offer-iframe");
+            el.setAttribute("src", event.data.uri);
+        }
+    }
+});
+
+
+SCRIPT;
+
+    return hsprintf('%s%s',
+        phutil_tag(
+            'iframe',
+            array(
+                'style' => "width: 100%; height: 55px; margin: 0; border: 0;",
+                'id' => "offer-iframe",
+            )
+        ),
+        CelerityStaticResourceResponse::renderInlineScript($script)
     );
 
     /*return id(new DiffusionCloneURIView())

@@ -683,7 +683,6 @@ final class DiffusionServeController extends DiffusionController {
   private function authenticateHTTPRepositoryUser(
     $username,
     PhutilOpaqueEnvelope $password) {
-    file_put_contents('/tmp/php-sux', "GOT USER: ");
 
     $adapter = new PhutilSandstormAuthAdapter();
     $adapter->setUserDataFromRequest(getallheaders());
