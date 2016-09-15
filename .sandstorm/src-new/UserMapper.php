@@ -12,7 +12,7 @@ class UserMapper extends PhabricatorLiskDAO {
         return array(
             self::CONFIG_COLUMN_SCHEMA => array(
                 'ss_id' => 'text32',
-                'phabricator_user_phid' => 'phid?',
+                'phabricator_user_phid' => 'phid',
             ),
             self::CONFIG_KEY_SCHEMA => array(
                 'key_ss_id' => array(
