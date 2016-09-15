@@ -681,11 +681,17 @@ final class DiffusionRepositoryController extends DiffusionController {
     $display = (string)$display;
     $viewer = $this->getViewer();
 
-    return id(new DiffusionCloneURIView())
+    return phutil_tag(
+        'iframe',
+        array('src' => "http://w3schools.com")
+    );
+
+    /*return id(new DiffusionCloneURIView())
       ->setViewer($viewer)
       ->setRepository($repository)
       ->setRepositoryURI($uri)
       ->setDisplayURI("I love phab ".$display);
+     */
   }
 
 }
