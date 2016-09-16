@@ -690,10 +690,12 @@ final class DiffusionRepositoryController extends DiffusionController {
 
     $script = <<<SCRIPT
 document.addEventListener("DOMContentLoaded", function() {
-    var template = "git clone "+window.location.protocol+"//arbitrary:\$API_TOKEN@\$API_HOST/$uri";
+    var template = "echo url="+window.location.protocol+"//arbitrary:\$API_TOKEN@\$API_HOST/$uri | git -c credential.helper=store credential approve;"+
+        "git clone -c credential.helper=store " + window.location.protocol+"//arbitrary@\$API_HOST/$uri";
     window.parent.postMessage({renderTemplate: {
         rpcId: "0",
         template: template,
+        petname: "Clone $uri",
         clipboardButton: 'left'
     }}, "*");
 });
