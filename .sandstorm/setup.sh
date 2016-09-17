@@ -56,7 +56,7 @@ ln -s /usr/lib/git-core/git-http-backend /usr/bin
 cat <<EOF > /usr/local/bin/pygmentize
 #!/bin/bash
 
-HOME=/var/home exec /usr/bin/pygmentize \$@
+exec env HOME=/var/home /usr/bin/pygmentize \$@
 EOF
 chmod a+x /usr/local/bin/pygmentize
 
